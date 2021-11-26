@@ -14,14 +14,26 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
+        boolean result = false;
         int index = indexOf(id);
         if (index != -1) {
             item.setId(id);
             items[index] = item;
-            return true;
-        } else {
-            return false;
+            result = true;
         }
+        return result;
+    }
+
+    public boolean delete(int id) {
+        boolean result = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
+            items[size - 1] = null;
+            size--;
+            result = true;
+        }
+        return result;
     }
 
     private int indexOf(int id) {
