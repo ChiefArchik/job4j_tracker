@@ -9,6 +9,7 @@ public class Bus implements Vehicle {
 
     @Override
     public void sound() {
-        System.out.println(getClass().getSimpleName() + " Звук работы двигателя внутреннего сгорания.");
+        System.out.println(getClass().getSimpleName()
+                + " Звук работы двигателя внутреннего сгорания.");
     }
 }
