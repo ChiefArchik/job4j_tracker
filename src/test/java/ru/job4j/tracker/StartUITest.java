@@ -40,7 +40,6 @@ public class StartUITest {
         };
         StartUI.deleteItem(new SubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
-        Item expected = null;
-        assertThat(deleted, is(expected));
+        assertNull(deleted);
     }
 }
