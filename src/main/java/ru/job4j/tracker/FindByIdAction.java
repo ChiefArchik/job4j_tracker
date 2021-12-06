@@ -16,6 +16,6 @@ public class FindByIdAction implements UserAction {
         } else {
             System.out.println("Заявка с введенным id: " + " не найдена.");
         }
-        return false;
+        return true;
     }
 }
