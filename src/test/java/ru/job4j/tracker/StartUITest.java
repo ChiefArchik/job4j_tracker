@@ -102,8 +102,9 @@ public class StartUITest {
     public void whenShaowAllItemsTestOutputIsSuccessfully() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test"));
         Input in = new SubInput(
-                new String[] {"0", "1", "1"}
+                new String[] {"0", String.valueOf(one.getId()), "1"}
         );
         UserAction[] actions = new UserAction[] {
                 new ShowAllAction(out),
@@ -116,7 +117,7 @@ public class StartUITest {
                         + "0. Show all Items" + ln
                         + "1. Exit" + ln
                         + "=== Show all Items ===" + ln
-                        + "Хранилище еще не содержит заявок." + ln
+                        + one + ln
                         + "Menu:" + ln
                         + "0. Show all Items" + ln
                         + "1. Exit" + ln
@@ -142,7 +143,7 @@ public class StartUITest {
                 + "0. Find Item by id" + ln
                 + "1. Exit" + ln
                 + "=== Find Item by id ===" + ln
-                + tracker.findById(one.getId()) + ln
+                + one + ln
                 + "Menu:" + ln
                 + "0. Find Item by id" + ln
                 + "1. Exit" + ln
@@ -168,7 +169,7 @@ public class StartUITest {
                 + "0. Find Item by name" + ln
                 + "1. Exit" + ln
                 + "=== Find Item by name ===" + ln
-                + tracker.findById(one.getId()) + ln
+                + one + ln
                 + "Menu:" + ln
                 + "0. Find Item by name" + ln
                 + "1. Exit" + ln
