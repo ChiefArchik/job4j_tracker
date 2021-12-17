@@ -12,9 +12,16 @@ public class FindElement {
         }
 
         if (rsl == -1) {
-            throw new ElementNotFoundException();
+            throw new ElementNotFoundException("Element not found.");
         }
-        System.out.println(rsl);
         return rsl;
+    }
+
+    public static void main(String[] args) {
+        try {
+            FindElement.indexOf(new String[]{"1", "3", "2"}, "4");
+        } catch (ElementNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
