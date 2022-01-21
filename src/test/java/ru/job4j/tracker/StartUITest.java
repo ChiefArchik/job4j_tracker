@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 
 public class StartUITest {
@@ -23,7 +24,7 @@ public class StartUITest {
                 new ExitAction()
         );
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
 
     @Test
@@ -45,19 +46,18 @@ public class StartUITest {
 
     @Test
     public void whenDeleteItem() {
-        Output out = new ConsoleOutput();
+        Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Deleted item"));
-        Item item1 = tracker.add(new Item("Item"));
         Input in = new SubInput(
-                new String[] {"0", String.valueOf(item.getId()), "1"}
+                new String[]{"0", String.valueOf(item.getId()), "1"}
         );
         List<UserAction> actions = Arrays.asList(
-                new DeleteAction(out),
+                new DeleteAction(output),
                 new ExitAction()
         );
-        new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is("Item"));
+        new StartUI(output).init(in, tracker, actions);
+        assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
     @Test

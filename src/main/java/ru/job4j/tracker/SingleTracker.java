@@ -30,7 +30,7 @@ public class SingleTracker {
         return tracker.findByName(key);
     }
 
-    public Item[] findAll() {
+    public List<Item> findAll() {
         return tracker.findAll();
     }
 

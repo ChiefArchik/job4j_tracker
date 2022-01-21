@@ -6,7 +6,6 @@ import java.util.List;
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
-    private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
@@ -16,8 +15,9 @@ public class Tracker {
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        boolean result = index != -1;
+        boolean result = index >= 0;
         if (result) {
+            item.setId(id);
             items.set(index, item);
         }
         return result;
@@ -26,7 +26,7 @@ public class Tracker {
     public boolean delete(int id) {
 
         int index = indexOf(id);
-        boolean result = index != -1;
+        boolean result = index >= 0;
         if (result) {
             items.remove(index);
         }
@@ -34,24 +34,30 @@ public class Tracker {
     }
 
     private int indexOf(int id) {
-        int rsl = items.indexOf(items.get(id - 1));
+        int rsl = -1;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) {
+                rsl = i;
+                break;
+            }
+        }
         return rsl;
     }
 
     public Item findById(int id) {
         int index = indexOf(id);
-        return index != -1 ? items.get(id - 1) : null;
+        return index != -1 ? items.get(index) : null;
     }
 
-    public Item[] findAll() {
-        return items.toArray(new Item[0]);
+    public List<Item> findAll() {
+        return List.copyOf(items);
     }
 
-    public  List<Item> findByName(String key) {
+    public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getName().equals(key)) {
-                result.add(items.get(i));
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                result.add(item);
             }
         }
         return result;

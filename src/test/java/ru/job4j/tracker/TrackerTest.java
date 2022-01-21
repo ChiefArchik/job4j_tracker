@@ -36,8 +36,8 @@ public class TrackerTest {
         Item second = new Item("Second");
         tracker.add(first);
         tracker.add(second);
-        Item result = tracker.findAll()[0];
-        assertThat(result.getName(), is(first.getName()));
+        List<Item> result = tracker.findAll();
+        assertThat(result.get(0).getName(), is(first.getName()));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class TrackerTest {
         tracker.add(new Item("Second"));
         tracker.add(new Item("First"));
         List<Item> result = tracker.findByName(second.getName());
-        assertThat(result.get(1).getName(), is(second.getName()));
+        assertThat(result.get(0).getName(), is(second.getName()));
     }
 
     @Test
@@ -85,13 +85,10 @@ public class TrackerTest {
     public void whenDelete() {
         Tracker tracker = new Tracker();
         Item bug = new Item();
-        Item bug1 = new Item();
         bug.setName("Bug");
-        bug1.setName("Bug-1");
         tracker.add(bug);
-        tracker.add(bug1);
         int id = bug.getId();
         tracker.delete(id);
-        assertThat(tracker.findById(id).getName(), is("Bug-1"));
+        assertThat(tracker.findById(id), is(nullValue()));
     }
 }
