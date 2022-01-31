@@ -75,7 +75,7 @@ public class JobTest {
         Comparator<Job> cmpDescNameAscPriority =
                 new JobDescByName().thenComparing(new JobAscByPriority());
         int rsl = cmpDescNameAscPriority.compare(
-                new Job("Impl task", 0),
+                new Job("Fix bug", 0),
                 new Job("Fix bug", 1)
         );
         assertThat(rsl, lessThan(0));
