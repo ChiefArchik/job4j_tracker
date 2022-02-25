@@ -27,7 +27,7 @@ public class SchoolTest {
         expected.add(new Student(90, "Surname9"));
         assertThat(rsl, is(expected));
     }
-/*
+
     @Test
     public void whenCollectClassB() {
         List<Student> students = List.of(
@@ -38,7 +38,7 @@ public class SchoolTest {
                 new Student(80, "Surname8")
         );
         School sc = new School();
-        Predicate<Student> pr = ...;
+        Predicate<Student> pr = x -> (x.getScore() >= 50) && (x.getScore() < 70);
         List<Student> rsl = sc.collect(students, pr);
         List<Student> expected = new ArrayList<>();
         expected.add(new Student(50, "Surname5"));
@@ -56,12 +56,12 @@ public class SchoolTest {
                 new Student(90, "Surname9")
         );
         School sc = new School();
-        Predicate<Student> pr = ...;
+        Predicate<Student> pr = x -> (x.getScore() > 0) && (x.getScore() < 50);
         List<Student> rsl = sc.collect(students, pr);
         List<Student> expected = new ArrayList<>();
         expected.add(new Student(10, "Surname1"));
         expected.add(new Student(30, "Surname3"));
         expected.add(new Student(40, "Surname4"));
         assertThat(rsl, is(expected));
-    }*/
+    }
 }
