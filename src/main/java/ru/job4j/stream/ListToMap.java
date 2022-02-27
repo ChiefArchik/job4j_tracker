@@ -13,7 +13,7 @@ public class ListToMap {
                 .collect(Collectors.toMap(
                         Student::getSurname,
                         v -> v,
-                        (v, k) -> Objects.equals(k, v) ? k : v
+                        (v, k) -> v
                 ));
     }
 }
