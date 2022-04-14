@@ -59,10 +59,10 @@ public class BankService {
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
         Optional<User> findedUser = findByPassport(passport);
-        return findedUser.map(user -> users.get(user)
+        return findedUser.flatMap(user -> users.get(user)
                 .stream()
                 .filter(u -> u.getRequisite().equals(requisite))
-                .findFirst()).orElse(null);
+                .findFirst());
     }
 
     /**
